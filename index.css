@@ -2,37 +2,84 @@ body {
     font-family: "Inter", sans-serif;
     margin: 0;
 }
+h1, h2,h3, p {
+    margin: 0;
+}
 
+/* header */
 header {
     display: flex;
     justify-content: space-between;
     background-color: aliceblue;
+    padding: 1em;
 }
-
 .subheader {
     display: flex;
     align-items: center;
-    margin: 1em;
     gap: 0.5em;
 }
-
 .logo {
-    height: 55px;
+    height: 2rem;
     border-radius: 50%;
 }
 .header-title {
-    font-size: 1.3rem;
+    color: #0E0E0E;
+    font-size: 1rem;
     font-weight: 700;
 }
-
 ul {
+    color: #090909;
+    font-size: 0.75rem;
     display: flex;
-    gap: 2em;
+    gap: 1.8em;
     font-weight: 500;
     list-style: none;
 }
+/* //////////// */
+.post {
+    margin: 1.5em 1em;
+}
 
+.post-img {
+    width: 100%;
+    border-radius: 5px;
+}
 
+.post-date {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-top: 1em;
+}
+
+.post-title {
+    color: #141414;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0.4em 0;
+}
+
+.post-subtitle {
+    color: #505050;
+    font-size: 1rem;
+    font-weight: 400;
+}  
+
+.post-main {
+    background-color: red;
+    filter: brightness(0.5);
+    background-image: url(images/beging.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 5px solid red;
+}
+ 
+.post-main .post-date,
+.post-main .post-title,
+.post-main .post-subtitle {
+    color: white;
+}
 
 
 

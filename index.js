@@ -1,5 +1,8 @@
+const postsEl = document.getElementById("post-section")
+
 const blogPosts = [
     {
+      img: "images/portafolio.png",
       title: "How I Built My First Portfolio Website",
       date: "May 10, 2025",
       content: `After finishing my first few HTML and CSS lessons, I wanted to put my new skills into practice. I thought the best way to do that was by building a portfolio website that could introduce me as a developer, even if I was just getting started. I began by sketching a layout on paper—nothing fancy, just boxes for the header, navigation, projects section, and contact info. 
@@ -9,6 +12,7 @@ const blogPosts = [
   Debugging layout issues was frustrating at times, especially dealing with unexpected margins and padding, but eventually I got the hang of using browser DevTools to inspect elements and adjust them in real time. By the time I finished, I had built something that worked across different screen sizes, and I was genuinely proud of it. This project taught me not only how websites are structured but also how rewarding it is to bring your own design to life through code. It gave me the confidence to keep going and explore more advanced topics.`
     },
     {
+      img: "images/promises.png",
       title: "What I Learned About JavaScript Promises",
       date: "April 26, 2025",
       content: `When I first encountered JavaScript Promises, they completely confused me. The syntax felt strange, especially the chaining with .then() and .catch(), and I couldn’t figure out when or why to use async/await. But I knew that understanding asynchronous code was crucial if I wanted to build apps that fetch data, so I stuck with it.
@@ -18,6 +22,7 @@ const blogPosts = [
   To practice, I built a weather app using the OpenWeatherMap API. I added basic search functionality, error handling, and loading indicators. I learned how to parse JSON responses, deal with status codes, and even debounce input events to limit API calls. More than anything, this project helped demystify how JavaScript works under the hood when dealing with the browser or external data. Now, I feel more confident handling real-world async workflows and can’t wait to try things like live chat apps or push notifications.`
     },
     {
+      img: "images/debugging.png",
       title: "Debugging Tips I Wish I Knew Earlier",
       date: "April 15, 2025",
       content: `When I started coding, seeing a red error in the console felt like the end of the world. I used to freeze or delete big chunks of code trying to make the problem disappear. Over time, I’ve come to see debugging as an essential part of development—not a sign of failure, but a signal that you’re learning and interacting with the system in a deeper way.
@@ -29,6 +34,7 @@ const blogPosts = [
   Most importantly, I stopped fearing bugs. Now, I embrace them as puzzles to solve. Each time I fix something tricky, I walk away with new insights that stick with me way longer than anything I read in a tutorial. Debugging has become one of the most satisfying parts of coding.`
     },
     {
+      img: "images/resources.png",
       title: "My Favorite Free Resources for Learning to Code",
       date: "March 29, 2025",
       content: `One of the best things about learning to code today is the number of free, high-quality resources available online. I’ve explored dozens of platforms, and a few have stood out as absolutely essential on my journey.
@@ -42,6 +48,7 @@ const blogPosts = [
   These resources, paired with daily consistency, made all the difference. I didn’t need to spend thousands of dollars—just time, focus, and curiosity.`
     },
     {
+      img: "images/beging.png",
       title: "Why I Started This Learning Journal",
       date: "March 10, 2025",
       content: `When I began learning to code, I felt overwhelmed by how much there was to learn. Concepts flew by, tutorials blurred together, and I often forgot what I had learned a few days earlier. That’s when I decided to start a learning journal—not just to record my progress, but to reflect on the process and solidify what I was learning.
@@ -54,4 +61,26 @@ const blogPosts = [
     }
   ];
 
-  
+
+const firstPost = blogPosts.shift()
+
+const posts = blogPosts.map(post => `
+  <div class="post">
+    <img class="post-img" src="${post.img}">
+    <p class="post-date">${post.date}</p>
+    <h2 class="post-title">${post.title}</h2>
+    <h3 class="post-subtitle">${escapeHTML(post.content)}</h3>
+  </div>`).join('')
+
+postsEl.innerHTML = posts
+
+
+
+// en caso de que el texto conteng &, < o >, se remplaza para que no rompa el innerHTML
+function escapeHTML(text){
+  text = text.replace(/&/g, "&amp")
+  text = text.replace(/</g, "&lt")
+  text = text.replace(/>/g, "&gt")
+
+  return text
+}
