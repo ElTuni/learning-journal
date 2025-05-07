@@ -143,25 +143,20 @@ const blogPosts = [
 mainEl.addEventListener("click", function(e){
   if (e.target.closest(".post")?.dataset.uuid) {
     const selectedPostUuid = e.target.closest(".post")?.dataset.uuid
-    renderArticule(selectedPostUuid)
+    renderArticle(selectedPostUuid)
+    const selectedPost = blogPosts.find((post) => post.uuid === selectedPostUuid)
+    history.pushState({id: selectedPostUuid}, "", selectedPost.title.replaceAll(" ",""))
   }
 })
 
 window.onpopstate = function(e){
-  if (e.state?.id != "main"){
-    renderArticule(e.state.id)
-  }else {
-    console.log("corrio")
+  // Si no es main, significa que es un articulo
+  if (e.state?.id !== "main"){
+    renderArticle(e.state.id)
+  } else {
     renderMain()
   }
 }
-
-
-
-
-
-
-
 
 function createFeaturedPost(featured) {
   return `
@@ -185,17 +180,17 @@ function createPosts(posts) {
   </section>`
 }
 
-function createArticule(articule) {
-  const articuleContent = articule.content.map((data) => `
+function createArticule(article) {
+  const articuleContent = article.content.map((data) => `
   <h3 class="post-content-title">${data.title}</h3>
   <p class="post-content">${escapeHTML(data.text)}</p>`).join('')
 
   return `
-  <section class="articule">
-    <p class="post-date">${articule.date}</p>
-    <h1 class="post-title">${articule.title}.</h1>
-    <h2 class="post-content">${articule.main}</h2>
-    <img class="post-img" src="${articule.img}">
+  <section class="article">
+    <p class="post-date">${article.date}</p>
+    <h1 class="post-title">${article.title}.</h1>
+    <h2 class="post-content">${article.main}</h2>
+    <img class="post-img" src="${article.img}">
     ${articuleContent}
     <p class="post-recentpost">Recent Post</p>
   </section>`
@@ -218,14 +213,13 @@ function renderMain(){
 
   
   mainEl.innerHTML = featuredPost + postsHTML
-  
+
   // scroll to the top
   window.scrollTo(0, 0)
 }
 
-function renderArticule(selectedUuid){
+function renderArticle(selectedUuid){
   const selectedPost = blogPosts.find((post) => post.uuid === selectedUuid)
-  history.pushState({id: selectedPost.uuid}, "", selectedPost.title.replaceAll(" ", ""))
 
   mainEl.innerHTML = createArticule(selectedPost) + createPosts(blogPosts.filter((post) => post.uuid !== selectedUuid))
 
@@ -234,11 +228,16 @@ function renderArticule(selectedUuid){
 }
 
 
+// itero sobre todos los titulos de los posts
+const allPostsTitles = blogPosts.map((post) => post.title.replaceAll(" ", ""))
+// le saco el "/" con slice
+const pathname = window.location.pathname.slice(1)
 
-
-
-
-
-
-renderMain()
-history.replaceState("main", "", "/main")
+// Si el pathname coincide con un artículo, renderiza el artículo
+if (allPostsTitles.includes(pathname)){
+  const selected = blogPosts.find((post) => post.title.replaceAll(" ", "") === pathname)
+  renderArticle (selected.uuid)
+} else {
+  history.replaceState({id: "main"}, "", "/main")
+  renderMain()
+}
