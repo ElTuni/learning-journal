@@ -1,6 +1,7 @@
 body {
     font-family: "Inter", sans-serif;
     margin: 0;
+    padding-bottom: 1em;
 }
 h1, h2,h3, p {
     margin: 0;
@@ -10,7 +11,6 @@ h1, h2,h3, p {
 header {
     display: flex;
     justify-content: space-between;
-    background-color: aliceblue;
     padding: 1em;
 }
 .subheader {
@@ -32,54 +32,89 @@ ul {
     font-size: 0.75rem;
     display: flex;
     gap: 1.8em;
-    font-weight: 500;
+    font-weight: 600;
     list-style: none;
 }
 /* //////////// */
-.post {
-    margin: 1.5em 1em;
+
+/* overview featured */
+.post-featured {
+    background-image: url();
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply; /* Darkens the image */
+    background-color: rgba(0, 0, 0, 0.5); /* Control the darkness */
+    padding: 4em 1em 1.25em 1em;
 }
+
+.post-title-main {
+    color: white;
+    font-size: 2rem;
+}
+
+.post-featured .post-date,
+.post-featured .post-title,
+.post-featured .post-content {
+    color: white;
+}
+/* //////////// */
+
+/* pre-view */
+.post-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 1em;
+    gap: 3em;
+}
+
+/* .post {
+     ACA IRIA LO DE FLEX Y ESO 
+} */
 
 .post-img {
     width: 100%;
     border-radius: 5px;
 }
-
 .post-date {
     font-size: 0.8rem;
     font-weight: 400;
     margin-top: 1em;
 }
-
-.post-title {
-    color: #141414;
-    font-weight: 700;
-    font-size: 1.5rem;
+.post-title, .post-title-main {
+    font-weight: 800;
     margin: 0.4em 0;
 }
-
-.post-subtitle {
+.post-title {
+    color: #141414;
+    font-size: 1.4rem;
+}
+.post-content {
     color: #505050;
     font-size: 1rem;
     font-weight: 400;
 }  
+/* //////////// */
 
-.post-main {
-    background-color: red;
-    filter: brightness(0.5);
-    background-image: url(images/beging.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* post itself */
+.articule {
+    margin: 1.5em 1em 0 ;
+}
 
-    border: 5px solid red;
+.articule .post-img {
+    margin: 1.5em 0;
 }
- 
-.post-main .post-date,
-.post-main .post-title,
-.post-main .post-subtitle {
-    color: white;
+
+.post-content-title, .post-recentpost {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 1.2em 0 0.9em 0;
 }
+
+.post-recentpost {
+    text-align: center;
+}
+
 
 
 
