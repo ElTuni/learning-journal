@@ -142,15 +142,20 @@ const blogPosts = [
 
 mainEl.addEventListener("click", function(e){
   if (e.target.closest(".post")?.dataset.uuid) {
-    const SelectedPostUuid = e.target.closest(".post")?.dataset.uuid
-
-    const selectedPost = blogPosts.find((post) => post.uuid === SelectedPostUuid)
-
-    mainEl.innerHTML = createArticule(selectedPost) + createPosts(blogPosts.filter((post) => post.uuid !== SelectedPostUuid))
+    const selectedPostUuid = e.target.closest(".post")?.dataset.uuid
+    renderArticule(selectedPostUuid)
   }
 })
 
-
+window.onpopstate = function(e){
+  console.log(window.location.pathname)
+  if (e.state?.id !== "main"){
+    renderArticule(e.state.id)
+  }else {
+    console.log("corrio")
+    renderMain()
+  }
+}
 function createFeaturedPost(featured) {
   return `
   <section class="post-featured post" data-uuid=${featured.uuid} style="background-image: url('${featured.img}');">
@@ -176,7 +181,7 @@ function createPosts(posts) {
 function createArticule(articule) {
   const articuleContent = articule.content.map((data) => `
   <h3 class="post-content-title">${data.title}</h3>
-  <p class="post-content">${data.text}</p>`).join('')
+  <p class="post-content">${escapeHTML(data.text)}</p>`).join('')
 
   return `
   <section class="articule">
@@ -197,9 +202,31 @@ function escapeHTML(text){
 
   return text
 }
-// solo agarramos el primer post
-const featuredPost = createFeaturedPost(blogPosts[0])
-// excluimos el primer post, pero sin modificar el arraay og
-const postsHTML = createPosts(blogPosts.slice(1))
 
-mainEl.innerHTML = featuredPost + postsHTML
+function renderMain(){
+  // solo agarramos el primer post
+  const featuredPost = createFeaturedPost(blogPosts[0])
+  // excluimos el primer post, pero sin modificar el arraay og
+  const postsHTML = createPosts(blogPosts.slice(1))
+
+  
+  mainEl.innerHTML = featuredPost + postsHTML
+  history.replaceState({id: "main"},"","main")
+}
+
+function renderArticule(selectedUuid){
+  const selectedPost = blogPosts.find((post) => post.uuid === selectedUuid)
+  history.pushState({id: selectedPost.uuid}, "", selectedPost.title.replaceAll(" ", ""))
+
+  mainEl.innerHTML = createArticule(selectedPost) + createPosts(blogPosts.filter((post) => post.uuid !== selectedUuid))
+}
+
+function init(){
+  const pathname = window.location.pathname
+  if (pathname === "/main") {
+    renderMain()
+  } else {
+    console.log(pathname)
+  }
+}
+init()
