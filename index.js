@@ -148,14 +148,21 @@ mainEl.addEventListener("click", function(e){
 })
 
 window.onpopstate = function(e){
-  console.log(window.location.pathname)
-  if (e.state?.id !== "main"){
+  if (e.state?.id != "main"){
     renderArticule(e.state.id)
   }else {
     console.log("corrio")
     renderMain()
   }
 }
+
+
+
+
+
+
+
+
 function createFeaturedPost(featured) {
   return `
   <section class="post-featured post" data-uuid=${featured.uuid} style="background-image: url('${featured.img}');">
@@ -211,7 +218,9 @@ function renderMain(){
 
   
   mainEl.innerHTML = featuredPost + postsHTML
-  history.pushState({id: "main"}, "", "/main")
+  
+  // scroll to the top
+  window.scrollTo(0, 0)
 }
 
 function renderArticule(selectedUuid){
@@ -219,6 +228,17 @@ function renderArticule(selectedUuid){
   history.pushState({id: selectedPost.uuid}, "", selectedPost.title.replaceAll(" ", ""))
 
   mainEl.innerHTML = createArticule(selectedPost) + createPosts(blogPosts.filter((post) => post.uuid !== selectedUuid))
+
+  // scroll to the top
+  window.scrollTo(0, 0)
 }
 
+
+
+
+
+
+
+
 renderMain()
+history.replaceState("main", "", "/main")
