@@ -221,12 +221,4 @@ function renderArticule(selectedUuid){
   mainEl.innerHTML = createArticule(selectedPost) + createPosts(blogPosts.filter((post) => post.uuid !== selectedUuid))
 }
 
-function init(){
-  const pathname = window.location.pathname
-  if (pathname === "/main") {
-    renderMain()
-  } else {
-    console.log(pathname)
-  }
-}
-init()
+renderMain()
