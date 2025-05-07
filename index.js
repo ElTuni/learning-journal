@@ -211,7 +211,7 @@ function renderMain(){
 
   
   mainEl.innerHTML = featuredPost + postsHTML
-  history.pushState({id: "main"},"","main")
+  history.pushState({id: "main"}, "", "/main")
 }
 
 function renderArticule(selectedUuid){
