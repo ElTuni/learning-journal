@@ -1,11 +1,13 @@
 const mainEl = document.getElementById("main-content")
+const burgerEl = document.getElementById("burger-div")
+const burgerElFullScreen = document.getElementById("burger-overlay")
 
 const blogPosts = [
   {
     "img": "images/portafolio.png",
     "title": "How I Built My First Portfolio Website",
     "date": "May 10, 2025",
-    "main": "After finishing my first few HTML and CSS lessons, I felt an urge to create something tangible—something that showcased my new skills. That’s when I decided to build my first portfolio website. I wanted it to be a place where I could present my work, experiment with new techniques, and track my progress as a developer. Little did I know, this project would become much more than just a collection of code; it became a testament to my growth and determination.",
+    "main": "I built my first portfolio website to showcase my skills, learn new techniques, and track my progress as a developer.",
     "uuid": crypto.randomUUID(),
     "content": [
       {
@@ -140,17 +142,22 @@ const blogPosts = [
   }
 ]
 
-mainEl.addEventListener("click", function(e){
+document.addEventListener("click", function(e){
   if (e.target.closest(".post")?.dataset.uuid) {
     const selectedPostUuid = e.target.closest(".post")?.dataset.uuid
     renderArticle(selectedPostUuid)
     const selectedPost = blogPosts.find((post) => post.uuid === selectedPostUuid)
     history.pushState({id: selectedPostUuid}, "", selectedPost.title.replaceAll(" ",""))
+  } // oculto o muestro em menu hamburguesa 
+  else if (e.target.closest(".btn-burger") || e.target.closest(".btn-x") || e.target.closest(".burger-overlay")) {
+    document.body.classList.toggle("overflow")
+    burgerEl.classList.toggle("hide")
+    burgerElFullScreen.classList.toggle("hide")
   }
 })
 
 window.onpopstate = function(e){
-  // Si no es main, significa que es un articulo
+  // si no es main, significa que es un articulo
   if (e.state?.id !== "main"){
     renderArticle(e.state.id)
   } else {
@@ -172,7 +179,9 @@ function createPosts(posts) {
   <section class="post-container">
     ${posts.map(post => `
     <div class="post" data-uuid=${post.uuid}>
-      <img class="post-img" src="${post.img}">
+      <div class="center">
+        <img class="post-img" src="${post.img}">
+      </div>
       <p class="post-date">${post.date}</p>
       <h2 class="post-title">${post.title}</h2>
       <h3 class="post-content">${escapeHTML(post.main)}</h3>
