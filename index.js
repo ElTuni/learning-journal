@@ -199,9 +199,11 @@ function createArticule(article) {
     <p class="post-date">${article.date}</p>
     <h1 class="post-title">${article.title}.</h1>
     <h2 class="post-content">${article.main}</h2>
-    <img class="post-img" src="${article.img}">
+    <div class = "center">
+      <img class="post-img" src="${article.img}">
+    </div>
     ${articuleContent}
-    <p class="post-recentpost">Recent Post</p>
+    <p class="post-content-title center">Recent Post</p>
   </section>`
 }
 
