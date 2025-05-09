@@ -98,18 +98,20 @@ function createArticule(article) {
 
 function createAboutMe() {
   return `
-  <div class="article">
-    <div class="pfpic-and-title-div">
-      <img class="pfpic" src="${myVlog.img}">
+  <div class="pfpic-and-title-div">
+    <img class="pfpic" src="${myVlog.img}">
       <div>
         <h1 class="post-article-title">${myVlog.title}</h1>
         <h3 class="post-content padding-bottom">${myVlog.main}</h3>
       </div>
-    </div>
+  </div>
+  <div class="article">
+
       ${myVlog.content.map((data) => `
         <h2 class="post-content-title">${data.title}</h2>
         <p class="post-content">${data.text}</p>`).join('')
       }
+      <p class="post-content-title center recent-post">Recent Post</p>
   </div>`
 }
 

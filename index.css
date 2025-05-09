@@ -4,10 +4,6 @@ body {
     background-color: #FAFAFA;
 }
 
-main {
-    padding-bottom: 2em;
-}
-
 h1, h2, h3, p, nav {
     margin: 0;
 }
@@ -107,8 +103,8 @@ header {
 /* //////////// */
 
 /* post itself */
-.article, .post-container {
-    margin: 1em 1em;
+.article, .post-container, .pfpic-and-title-div {
+    margin: 1em;
 }
 
 .article .post-img {
@@ -222,7 +218,6 @@ ul {
     height: 12rem;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 0.5rem;
 }
 
 .padding-bottom {
@@ -250,11 +245,23 @@ footer {
     font-style: italic;
 }
 
+.recent-post {
+    text-decoration: underline 1px;
+    margin-top: 5em;
+}
+
+
 @media (min-width: 700px) {
     .post-container {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        margin: 2em 2em 0 ;
     }
+
+    .post-container, .pfpic-and-title-div {
+        max-width: 1000px;
+        margin: auto;
+        padding: 2em;
+    }
+
 
     .pfpic-and-title-div {
         display: flex;
