@@ -1,8 +1,13 @@
 body {
     font-family: "Inter", sans-serif;
     margin: 0;
-    padding-bottom: 1em;
+    background-color: #FAFAFA;
 }
+
+main {
+    padding-bottom: 2em;
+}
+
 h1, h2, h3, p, nav {
     margin: 0;
 }
@@ -15,11 +20,12 @@ button {
 
 /* header */
 header {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.913);
     position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1em;
 }
 .subheader {
@@ -51,12 +57,11 @@ header {
 }
 
 .post-title-main {
-    color: white;
     font-size: 2rem;
 }
 
+.post-title-main,
 .post-featured .post-date,
-.post-featured .post-title,
 .post-featured .post-content {
     color: white;
 }
@@ -66,9 +71,9 @@ header {
 .post-container {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 2em 1em;
     gap: 3em;
 }
+
 
 .center {
     text-align: center;
@@ -76,7 +81,7 @@ header {
 
 .post-img {
     width: 100%;
-    max-width: 550px;
+    max-width: 500px;
     border-radius: 5px;
 }
 .post-date {
@@ -84,14 +89,16 @@ header {
     font-weight: 400;
     margin-top: 1em;
 }
-.post-title, .post-title-main {
+
+.post-title, .post-title-main, .post-article-title  {
     font-weight: 800;
     margin: 0.4em 0;
 }
 .post-title {
-    color: #141414;
-    font-size: 1.4rem;
+    color: #151515;
+    font-size: 1.3rem;
 }
+
 .post-content {
     color: #505050;
     font-size: 1rem;
@@ -100,18 +107,24 @@ header {
 /* //////////// */
 
 /* post itself */
-.article {
-    margin: 1.5em 1em 0 ;
+.article, .post-container {
+    margin: 1em 1em;
 }
 
 .article .post-img {
     margin: 1.5em 0;
 }
 
+.post-article-title {
+    color: #151515;
+    font-size: 2rem;
+}
+
 .post-content-title {
-    font-weight: 700;
+    color: #151515;
+    font-weight: 800;
     font-size: 1rem;
-    margin: 1.2em 0 0.9em 0;
+    margin: 1.5em 0 0.7em 0;
 }
 
 
@@ -128,7 +141,7 @@ header {
     box-shadow: #0E0E0E 0px 0px 20px;
     width: 70%;
     transform: translateX(0%);
-    transition: transform 0.5s, box-shadow 1s;
+    transition: transform 0.25s, box-shadow 1s;
 }
 
 /* es el fondo invisible, para que el usario no pueda interacuar con el main content */
@@ -168,22 +181,31 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 1.2em;
-    text-align: left;
     color: #090909;
-    font-size: 1rem;
-    font-weight: 600;
+    
     list-style: none;
     padding: 0;
 }
-li i {
+
+
+
+.header-btn {
+    text-align: left;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 100%;
+    padding-bottom: 0.5em;
+    border-bottom: #505050 1px solid;
+}
+.header-btn i {
     color:#1a1a1a;
     width: 20px;
     padding-left: 1em;
     margin-right: 0.5em;
 }
-li {
-    padding-bottom: 0.5em;
-    border-bottom: #505050 1px solid;
+
+.btns-burger-desktop {
+    display: none;
 }
 
 .hide {
@@ -195,9 +217,109 @@ li {
     overflow: hidden;
 }
 
+.pfpic {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.padding-bottom {
+    padding-bottom: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 3em 0;
+    color: #FAFAFA;
+    background-color: #202020;
+}
+
+.footer-title {
+    font-weight: 600;
+}
+
+.footer-subtitle {
+    font-size: 0.8rem;
+    font-weight: 200;
+    font-style: italic;
+}
 
 @media (min-width: 700px) {
     .post-container {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        margin: 2em 2em 0 ;
+    }
+
+    .pfpic-and-title-div {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    .article {
+        margin:  auto;
+        max-width: 750px;
+        padding: 1.5em 5em 0;
+    }
+
+    header {
+        height: 3rem;
+    }
+
+    .post-featured {
+        padding-top: 6em;
+    }
+
+    .post-title-main {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .post-article-title {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+    }
+
+    .btn-burger, .burger {
+        display: none;
+    }
+
+    .btns-burger-desktop {
+        display: block;
+    }
+
+    ul {
+        gap: 2rem;
+        flex-direction: row;
+        margin: 0;
+        
+    }
+
+    .header-btn {
+        position: relative;
+        padding: 0;
+        border-bottom: none;
+        transition: scale 0.5s;
+    }
+    .header-btn::before {
+        position: absolute;
+        content: "";
+        bottom: -5px;
+        left: 50%;
+        background-color: rgb(26, 26, 26);
+        width: 60%;
+        height: 2px;
+        transform: translateX(-50%) scale(0);
+        transition: transform 0.3s ease-in-out
+    }
+
+    .header-btn:hover {
+        scale: 1.08;
+    }
+    .header-btn:hover::before {
+        transform: translateX(-50%) scale(1);
     }
 }

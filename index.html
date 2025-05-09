@@ -24,16 +24,21 @@
         <button class="btn-burger">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <!-- <nav>
+    
+        <nav class="btns-burger-desktop">
             <ul>
-                <li>HOME</li>
-                <li>ABOUT ME</li>
+                <li><button class="header-btn" data-headerbtn = "home">Home</button></li>
+                <li><button class="header-btn" data-headerbtn = "about">About Me</button></li>
             </ul>
-        </nav> -->
+        </nav>
+
     </header>
 
     <main id="main-content"></main>
-
+    <footer>
+        <p class="footer-title">My Learning Journal</p>
+        <p class="footer-subtitle">Copyright ©2025</p>
+    </footer>
     <div id= "burger-overlay"class="burger-overlay hide"></div>
     
     <div id="burger-div" class="burger hide">
@@ -42,13 +47,13 @@
         </button>
         <nav>
             <ul>
-                <li><i class="fa-solid fa-house"></i>Home</li>
-                <li><i class="fa-solid fa-user"></i>About Me</li>
+                <li><button class="header-btn" data-headerbtn = "home"><i class="fa-solid fa-house"></i>Home</button></li>
+                <li><button class="header-btn" data-headerbtn= "about"><i class="fa-solid fa-user"></i>About Me</button></li>
             </ul>
         </nav>
     </div>
 
     
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>

@@ -1,167 +1,56 @@
+import {blogPosts, myVlog} from "/db.js"
 const mainEl = document.getElementById("main-content")
 const burgerEl = document.getElementById("burger-div")
 const burgerElFullScreen = document.getElementById("burger-overlay")
 
-const blogPosts = [
-  {
-    "img": "images/portafolio.png",
-    "title": "How I Built My First Portfolio Website",
-    "date": "May 10, 2025",
-    "main": "I built my first portfolio website to showcase my skills, learn new techniques, and track my progress as a developer.",
-    "uuid": crypto.randomUUID(),
-    "content": [
-      {
-      "title": "Getting Started",
-      "text": "I began by sketching a basic layout on paper. This helped me visualize the structure before writing any code. From there, I moved to HTML, using semantic HTML with , , , and  to maintain a clear and organized structure."
-      },
-      {
-      "title": "Responsive Design",
-      "text": "One of my main challenges was making the site look great on all screen sizes. I achieved this using CSS Flexbox for layout control and media queries for adaptability. I tested my design on different devices, fixing spacing and alignment issues along the way."
-      },
-      {
-      "title": "Debugging Issues",
-      "text": "Debugging was a big part of the process. I encountered problems with layout shifts and font rendering, which I fixed using the DevTools in my browser. These challenges taught me the importance of patience and persistence."
-      },
-      {
-      "title": "Final Thoughts",
-      "text": "Completing this project was a huge confidence boost. Not only did I build a working website, but I also developed a problem-solving mindset that would become essential in my journey as a developer. This project wasn't just about HTML and CSS—it was about proving to myself that I could turn an idea into reality."
-      }
-    ]
-  },
-  {
-    "img": "images/promises.png",
-    "title": "What I Learned About JavaScript Promises",
-    "date": "April 26, 2025",
-    "main": "JavaScript Promises were confusing at first, but they became clear once I built real projects. At first, they seemed like a complex topic, but soon I realized they were just a way of handling tasks that take time—like fetching data from an API. Understanding how to use them was a game-changer in my coding journey.",
-    "uuid": crypto.randomUUID(),
-    "content": [
-      {
-      "title": "Understanding Promises",
-      "text": "Promises are wrappers for values that arrive later. They allow asynchronous operations without blocking the code. Initially, they seemed confusing, but breaking them down step-by-step made them much clearer."
-      },
-      {
-      "title": "Async/Await Mastery",
-      "text": "Async/Await made working with Promises much cleaner and easier to read. Instead of using .then() and .catch(), I learned to write more readable code using try/catch blocks and async functions."
-      },
-      {
-      "title": "Building a Weather App",
-      "text": "I built a weather app that fetched data from an API using Promises. This project helped me understand the flow of asynchronous code. I also learned how to handle errors effectively with try/catch."
-      },
-      {
-      "title": "Final Thoughts",
-      "text": "Mastering Promises and Async/Await was a turning point in my JavaScript journey. It taught me the importance of writing clean, readable code and gave me the confidence to tackle more complex projects."
-      }
-    ]
-  },
-  {
-    "img": "images/debugging.png",
-    "title": "Debugging Tips I Wish I Knew Earlier",
-    "date": "April 15, 2025",
-    "main": "Debugging is not just about fixing errors—it's about understanding how your code works. It’s a skill that transforms frustration into problem-solving, and every bug is an opportunity to learn. Mastering debugging has made me a better developer.",
-    "uuid": crypto.randomUUID(),
-    "content": [
-      {
-      "title": "Read Error Messages",
-      "text": "Error messages are your guide. They often tell you exactly what's wrong or at least give you a clue. Learning to read and understand them can save hours of frustration."
-      },
-      {
-      "title": "Console.log Wisely",
-      "text": "Using console.log at key points in your code can reveal the state of variables and the flow of logic. It’s like having a flashlight in a dark room while you search for the bug."
-      },
-      {
-      "title": "Break Down Problems",
-      "text": "When you encounter a bug, break your code into smaller parts. Test each part independently to isolate the problem. This systematic approach is much more efficient."
-      },
-      {
-      "title": "Using DevTools",
-      "text": "DevTools in your browser are a powerhouse for debugging. You can inspect the DOM, track network requests, and debug JavaScript directly."
-      },
-      {
-      "title": "Final Thoughts",
-      "text": "Debugging is an essential skill that goes beyond fixing errors. It's about becoming a problem-solver. Every bug you fix is a step towards becoming a better developer."
-      }
-    ]
-  },
-  {
-    "img": "images/resources.png",
-    "title": "My Favorite Free Resources for Learning to Code",
-    "date": "March 29, 2025",
-    "main": "Learning to code doesn’t have to be expensive. With the right free resources, you can build a solid foundation and become a skilled developer. Over time, I discovered the best platforms that taught me everything from basic HTML to advanced JavaScript.",
-    "uuid": crypto.randomUUID(),
-    "content": [
-      {
-      "title": "MDN Web Docs",
-      "text": "The best for HTML, CSS, and JavaScript. MDN provides in-depth, well-documented guides that help you understand how the web works, making it my go-to resource."
-      },
-      {
-      "title": "freeCodeCamp",
-      "text": "An amazing platform for interactive lessons and hands-on coding challenges. I completed several of their courses, which gave me practical experience with real-world projects."
-      },
-      {
-      "title": "The Odin Project",
-      "text": "This is a full web development curriculum. It covers everything from front-end to back-end, including hands-on projects and a strong community for support."
-      },
-      {
-      "title": "YouTube Channels",
-      "text": "I learned a lot from channels like Kevin Powell for CSS, Fireship for rapid guides, and Web Dev Simplified for clear, practical explanations."
-      },
-      {
-      "title": "Community Blogs",
-      "text": "Reading blogs on DEV and Medium gave me new perspectives and kept me updated with best practices. The experiences shared by other developers were incredibly valuable."
-      }
-    ]
-  },
-  {
-    "img": "images/beging.png",
-    "title": "Why I Started This Learning Journal",
-    "date": "March 10, 2025",
-    "main": "Learning to code can be overwhelming. Concepts blur together, and it’s easy to forget what you’ve learned. That’s why I decided to start this learning journal—to track my progress, stay motivated, and turn coding into a habit.",
-    "uuid": crypto.randomUUID(),
-    "content": [
-      {
-      "title": "Reflecting on Progress",
-      "text": "I wrote down what I learned each day, from HTML basics to debugging JavaScript. Seeing my own notes helped me reinforce my understanding."
-      },
-      {
-      "title": "Staying Consistent",
-      "text": "Writing regularly turned learning into a habit. Even on busy days, a quick entry kept me engaged with coding."
-      },
-      {
-      "title": "Overcoming Challenges",
-      "text": "Documenting struggles made them feel less overwhelming. I could look back and see how I solved similar problems before."
-      },
-      {
-      "title": "Building Confidence",
-      "text": "Looking back revealed how much I had learned. It reminded me that progress was real, even when it felt slow."
-      },
-      {
-      "title": "Sharing with Others",
-      "text": "Posting parts of my journal online not only helped others but also motivated me. It turned learning into a social experience."
-      }
-    ]
-  }
-]
+
 
 document.addEventListener("click", function(e){
+  // clieckeo un post
   if (e.target.closest(".post")?.dataset.uuid) {
     const selectedPostUuid = e.target.closest(".post")?.dataset.uuid
     renderArticle(selectedPostUuid)
-    const selectedPost = blogPosts.find((post) => post.uuid === selectedPostUuid)
-    history.pushState({id: selectedPostUuid}, "", selectedPost.title.replaceAll(" ",""))
-  } // oculto o muestro em menu hamburguesa 
+    updateURL(selectedPostUuid)
+  } 
+  
+  // oculto o muestro el menu hamburguesa 
   else if (e.target.closest(".btn-burger") || e.target.closest(".btn-x") || e.target.closest(".burger-overlay")) {
-    document.body.classList.toggle("overflow")
-    burgerEl.classList.toggle("hide")
-    burgerElFullScreen.classList.toggle("hide")
+    showOrHideMenu()
   }
+
+  // se apreto un boton del header
+  else if (e.target.closest(".header-btn")) {
+    const buttonClicked = e.target.closest(".header-btn").dataset.headerbtn
+    console.log(buttonClicked)
+    if(buttonClicked === "home"){
+      renderHome()
+    } else if (buttonClicked === "about") {
+      renderAboutMe()
+    }
+
+    history.pushState({id: buttonClicked}, "", "/" + buttonClicked)
+
+    // solo ocultar el menu, en caso de que este abierto
+    if (e.target.closest(".burger")) {
+      showOrHideMenu()
+    }
+  } else if (e.target.closest(".subheader")) {
+    renderHome()
+    history.pushState({id: "home"}, "", "/home")
+  }
+
 })
 
+// miramos las flechas de atras y adelante del navegador
 window.onpopstate = function(e){
-  // si no es main, significa que es un articulo
-  if (e.state?.id !== "main"){
-    renderArticle(e.state.id)
-  } else {
-    renderMain()
+  const urlName = e.state.id
+  if (urlName.toLowerCase() === "home"){
+    renderHome()
+  } else if (urlName.toLowerCase() === "about") {
+    renderAboutMe()
+  } // si no es home ni about, significa que es un articulo
+  else {
+    renderArticle(urlName)
   }
 }
 
@@ -197,7 +86,7 @@ function createArticule(article) {
   return `
   <section class="article">
     <p class="post-date">${article.date}</p>
-    <h1 class="post-title">${article.title}.</h1>
+    <h1 class="post-article-title">${article.title}</h1>
     <h2 class="post-content">${article.main}</h2>
     <div class = "center">
       <img class="post-img" src="${article.img}">
@@ -205,6 +94,23 @@ function createArticule(article) {
     ${articuleContent}
     <p class="post-content-title center">Recent Post</p>
   </section>`
+}
+
+function createAboutMe() {
+  return `
+  <div class="article">
+    <div class="pfpic-and-title-div">
+      <img class="pfpic" src="${myVlog.img}">
+      <div>
+        <h1 class="post-article-title">${myVlog.title}</h1>
+        <h3 class="post-content padding-bottom">${myVlog.main}</h3>
+      </div>
+    </div>
+      ${myVlog.content.map((data) => `
+        <h2 class="post-content-title">${data.title}</h2>
+        <p class="post-content">${data.text}</p>`).join('')
+      }
+  </div>`
 }
 
 // en caso de que el texto conteng &, < o >, se remplaza para que no rompa el innerHTML
@@ -216,12 +122,17 @@ function escapeHTML(text){
   return text
 }
 
-function renderMain(){
+function updateURL(selectedPageUuid){
+  const selectedPage = blogPosts.find((post) => post.uuid === selectedPageUuid) 
+  history.pushState({id: selectedPageUuid}, "", selectedPage.title.replaceAll(" ",""))
+}
+
+function renderHome(){
+
   // solo agarramos el primer post
   const featuredPost = createFeaturedPost(blogPosts[0])
   // excluimos el primer post, pero sin modificar el arraay og
   const postsHTML = createPosts(blogPosts.slice(1))
-
   
   mainEl.innerHTML = featuredPost + postsHTML
 
@@ -238,17 +149,34 @@ function renderArticle(selectedUuid){
   window.scrollTo(0, 0)
 }
 
+function renderAboutMe() {
+  mainEl.innerHTML = createAboutMe() + createPosts(blogPosts)
+}
+
+
+
+function showOrHideMenu () {
+  document.body.classList.toggle("overflow")
+  burgerEl.classList.toggle("hide")
+  burgerElFullScreen.classList.toggle("hide")
+}
+
 
 // itero sobre todos los titulos de los posts
-const allPostsTitles = blogPosts.map((post) => post.title.replaceAll(" ", ""))
+const allPostsTitles = blogPosts.map((post) => post.title.replaceAll(" ", "").toLowerCase())
 // le saco el "/" con slice
-const pathname = window.location.pathname.slice(1)
+const pathname = window.location.pathname.slice(1).toLowerCase()
 
+// uso toLowerCase() para que no sea sensible a laa s minusculas
 // Si el pathname coincide con un artículo, renderiza el artículo
 if (allPostsTitles.includes(pathname)){
-  const selected = blogPosts.find((post) => post.title.replaceAll(" ", "") === pathname)
+  const selected = blogPosts.find((post) => post.title.replaceAll(" ", "").toLowerCase() === pathname)
   renderArticle (selected.uuid)
-} else {
-  history.replaceState({id: "main"}, "", "/main")
-  renderMain()
+} // en caso de que sea laa about page, la renderiza 
+else if (pathname === "about") {
+  renderAboutMe()
+} // y si es cualquier otro link, lo manda a la home page
+else {
+  history.replaceState({id:"home"}, "", "/home")
+  renderHome()
 }
