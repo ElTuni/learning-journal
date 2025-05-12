@@ -154,6 +154,9 @@ header {
     border-radius: 5px;
 }
 .btn-burger {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.5rem;
     border: 1px solid rgb(191, 191, 191);
     transition: background-color 0.3s;
 }
